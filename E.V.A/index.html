@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #181818;
+            color: #f0f0f0;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 5fr;
+            grid-template-rows: auto 1fr;
+            gap: 10px;
+            height: 100vh;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        .sidebar {
+            grid-row: 1 / 3;
+            background-color: #282828;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .avatar {
+            margin-bottom: 20px;
+            background-color: #383838;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .avatar img {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+        }
+
+        .main-content {
+            grid-column: 2 / 3;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .temp-mem-container {
+            display: flex;
+            gap: 10px;
+            flex: 1;
+        }
+
+        .temperature, .memory {
+            flex: 1;
+            background-color: #282828;
+            padding: 50px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            position: relative;
+        }
+
+        .bar {
+            width: 10%;
+            background-color: #3498db;
+            height: 80%;
+            position: absolute;
+            bottom: 10px;
+        }
+
+        .bar1 {
+            left: 30%;
+            height: 50%; /* Exemplo de valor para a primeira barra */
+        }
+
+        .bar2 {
+            left: 50%;
+            height: 70%; /* Exemplo de valor para a segunda barra */
+        }
+
+        .bar3 {
+            left: 70%;
+            height: 50%; /* Exemplo de valor para a terceira barra */
+        }
+
+        .logging {
+            background-color: #282828;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            flex: 2;
+            overflow-y: auto;
+            margin-top: auto; /* Move o logging para a parte inferior */
+        }
+
+        .logging .entry {
+            margin-bottom: 10px;
+        }
+        
+        .logging .entry span {
+            color: #f0f0f0;
+        }
+
+        .logging .entry span:nth-child(2) {
+            color: green;
+        }
+
+        .logging .entry span:nth-child(4) {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="avatar">
+                <!-- Avatar -->
+                <img src="gato molhado.jpg" alt="Avatar">
+                <div>sidebar</div>
+            </div>
+            <!-- Outros botões na barra lateral podem ser adicionados aqui -->
+        </div>
+        <div class="main-content">
+            <div class="temp-mem-container">
+                <div class="temperature">
+                    <div>main</div>
+                    <!-- Gráfico de barras simples para temperatura -->
+                    <div class="bar bar1"></div>
+                    <div class="bar bar2"></div>
+                    <div class="bar bar3"></div>
+                </div>
+                <div class="memory">
+                    <div>main</div>
+                    <!-- Gráfico de barras simples para memória -->
+                    <div class="bar bar1"></div>
+                    <div class="bar bar2"></div>
+                    <div class="bar bar3"></div>
+                </div>
+            </div>
+            <div class="logging">
+                
+                <div class="entry">
+                    <footer>footer</footer>
+                </div>
+                
+               <!--
+                <div class="entry">
+                    <span>18:00</span> - <span>E.V.A.#:</span> Atualização: arquivo/texto.txt; diretório/mnt/compartilhamento/texto2.txt
+                </div>
+                <div class="entry">
+                    <span>19:00</span> - <span>E.V.A.#:</span> Atualização: brain/main/código.py
+                </div>
+                --> 
+
+            </div>
+        </div>
+    </div>
+    <script>
+
+function fetchLogs() {
+    fetch('/logs')
+    .then(response => response.json())
+    .then(data => {
+        const logContainer = document.querySelector('.logging');
+        logContainer.innerHTML = '';
+        data.forEach(entry => {
+            const logEntry = document.createElement('div');
+            logEntry.classList.add('entry');
+            logEntry.textContent = entry;
+            logContainer.appendChild(logEntry);
+        });
+    })
+    .catch(error => console.error('Erro ao buscar logs:', error)); 
+}
+setInterval(fetchLogs, 3000); // Atualiza a cada 3 segundos
+
+</script>
+
+</body>
+</html>
