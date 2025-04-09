@@ -6,12 +6,6 @@
         { "recarregar comandos": "commands" },
         { "recarregue os comandos": "commands" },
         { "recarregar os comandos": "commands" },
-
-        { "abrir o lol": "path:C:/Riot Games/Riot Client/RiotClientServices.exe" },
-
-        { "desliga tudo": "path:C:/C:/Users/p4blo/OneDrive/Área de Trabalho/E.V.A tools/Off.exe"},
-        { "suspende tudo": "path:C:/C:/Users/p4blo/OneDrive/Área de Trabalho/E.V.A tools/Sus.exe"},
-
         { "pesquisa por vídeo de *": "web?:https://youtube.com" },
         { "pesquise por vídeo de *": "web?:https://youtube.com" },
         { "pesquise vídeos de *": "web?:https://youtube.com" },
